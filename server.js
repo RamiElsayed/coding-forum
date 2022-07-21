@@ -2,7 +2,7 @@ const express = require('express');
 
 
 
-const controllers = require('./controllers');
+const controllers = require('./src/controllers');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
