@@ -7,20 +7,24 @@ const Thread = require('../models/Thread');
 const Comment = require('../models/Comment');
 
 const seedAll = async () => {
-  await connection.sync({ force: true});
+  try {
+    await connection.sync({ force: true });
 
-  console.log('DB sync successful');
+    console.log('DB sync successful');
 
-  await User.bulkCreate(users);
-  console.log('Users seed successful');
+    await User.bulkCreate(users);
+    console.log('Users seed successful');
 
-  await Thread.bulkCreate(threads);
-  console.log('Threads seed successful');
+    await Thread.bulkCreate(threads);
+    console.log('Threads seed successful');
 
+    await Comment.bulkCreate(comments);
+    console.log('Comments seed successful');
+  } catch (error) {
+    console.log(`[ERROR]: seed failed | ${error.message}`);
+  }
 
-  await Comment.bulkCreate(comments);
-  console.log('Comments seed successful');
-
+  process.exit(0);
 };
 
 seedAll();
