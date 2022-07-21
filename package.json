@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "prepare": "husky install && chmod ug+x .husky/* && chmod ug+x .git/hooks/*",
-    "dev": "nodemon src/index.js",
-    "seed": "node src/index.js",
-    "start": "node src/index.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/seeds/index.js",
+    "start": "node src/server.js",
     "lint": "eslint \"**/*.js\"",
     "lint-fix": "eslint --fix \"**/*.js\"",
     "precommit": "npm run lint-fix && git add .",

@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 
-
 const connection = require('../config/connection');
 
 class Comment extends Model {}
@@ -13,7 +12,7 @@ const schema = {
     autoIncrement: true,
   },
   comment: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   date_created: {
@@ -26,7 +25,7 @@ const schema = {
     references: {
       model: 'user',
       key: 'id',
-    }
+    },
   },
   thread_id: {
     type: DataTypes.INTEGER,
@@ -34,7 +33,7 @@ const schema = {
     references: {
       model: 'thread',
       key: 'id',
-    }
+    },
   },
 };
 

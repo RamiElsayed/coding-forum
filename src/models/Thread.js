@@ -1,26 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 
-
 const connection = require('../config/connection');
 
 class Thread extends Model {}
 
 const schema = {
   id: {
-    type: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
   title: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING,
     allowNull: false,
-    len: [8-30],
+    len: [8 - 30],
   },
   body: {
     type: DataTypes.TEXT,
     allowNull: false,
-    len: [50,1000],
+    len: [50, 1000],
   },
   date_created: {
     type: DataTypes.DATE,
@@ -32,8 +31,8 @@ const schema = {
     references: {
       model: 'user',
       key: 'id',
-    }
-  }
+    },
+  },
 };
 
 const options = {

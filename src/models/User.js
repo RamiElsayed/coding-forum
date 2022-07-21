@@ -41,8 +41,8 @@ const schema = {
       len: [8],
     }
   },
-  input: {
-    type: DataTypes.TEXT,
+  about_me: {
+    type: DataTypes.STRING,
     len: [50,200],
   }
 };

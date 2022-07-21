@@ -2,25 +2,29 @@ const Thread = require('./Thread');
 const User = require('./User');
 const Comment = require('./Comment');
 
-Thread.belongsTo(User,
-  {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL',
-  });
-
-User.hasMany(Thread,{
+User.hasMany(Thread, {
   foreignKey: 'user_id',
-  onDelete: 'SET NULL',
 });
 
-User.hasMany(Comment,{
+User.hasMany(Comment, {
   foreignKey: 'user_id',
-  onDelete: 'SET NULL',
 });
 
-Comment.hasOne(User,{
+Thread.belongsTo(User, {
   foreignKey: 'user_id',
-  onDelete: 'SET NULL',
+});
+
+Thread.hasMany(Comment, {
+  foreignKey: 'thread_id',
+});
+
+
+Comment.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
+Comment.belongsTo(Thread, {
+  foreignKey: 'thread_id',
 });
 
 module.exports = {
