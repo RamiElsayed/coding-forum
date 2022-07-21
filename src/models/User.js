@@ -18,7 +18,11 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  last_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -37,6 +41,10 @@ const schema = {
       len: [8],
     }
   },
+  input: {
+    type: DataTypes.TEXT,
+    len: [50,200],
+  }
 };
 
 const options = {

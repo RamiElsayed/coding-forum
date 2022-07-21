@@ -4,24 +4,18 @@ const { Model, DataTypes } = require('sequelize');
 
 const connection = require('../config/connection');
 
-class Thread extends Model {}
+class Comment extends Model {}
 
 const schema = {
   id: {
-    type: DataTypes.UUIDV4,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
-  title: {
+  comment: {
     type: DataTypes.TEXT,
     allowNull: false,
-    len: [8-30],
-  },
-  body: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-    len: [50,1000],
   },
   date_created: {
     type: DataTypes.DATE,
@@ -34,7 +28,15 @@ const schema = {
       model: 'user',
       key: 'id',
     }
-  }
+  },
+  thread_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'thread',
+      key: 'id',
+    }
+  },
 };
 
 const options = {
@@ -42,9 +44,9 @@ const options = {
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'thread',
+  modelName: 'comment',
 };
 
-Thread.init(schema, options);
+Comment.init(schema, options);
 
-module.exports = Thread;
+module.exports = Comment;
