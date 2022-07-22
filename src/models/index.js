@@ -1,13 +1,13 @@
+const Comment = require('./Comment');
 const Thread = require('./Thread');
 const User = require('./User');
-const Comment = require('./Comment');
 
-User.hasMany(Thread, {
+Comment.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-User.hasMany(Comment, {
-  foreignKey: 'user_id',
+Comment.belongsTo(Thread, {
+  foreignKey: 'thread_id',
 });
 
 Thread.belongsTo(User, {
@@ -18,17 +18,12 @@ Thread.hasMany(Comment, {
   foreignKey: 'thread_id',
 });
 
-
-Comment.belongsTo(User, {
+User.hasMany(Thread, {
   foreignKey: 'user_id',
 });
 
-Comment.belongsTo(Thread, {
-  foreignKey: 'thread_id',
+User.hasMany(Comment, {
+  foreignKey: 'user_id',
 });
 
-module.exports = {
-  Thread,
-  User,
-  Comment,
-};
+module.exports = { Comment, Thread, User };

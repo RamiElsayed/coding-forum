@@ -1,10 +1,9 @@
-const User = require('../../models/User');
-const Comment = require('../../models/Comment');
+const {Comment, User} = require('../../models');
 const { getPayloadWithValidFieldsOnly } = require('../../helpers');
 const bcrypt = require('bcrypt');
 
 
-const getUserById = (req, res) => {
+const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
     
@@ -12,6 +11,7 @@ const getUserById = (req, res) => {
           include: [
             {
               model: Comment,
+              attributes:['comment']
             },
           ],
         });
