@@ -8,13 +8,15 @@ const getUserById =  async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findByPk(id, {
+    const user = (await User.findByPk(id, {
       include: [
         {
           model: Comment,
           attributes:['comment']
         },
       ],
+    })).map((user) => {
+      user.get({ plain: true });
     });
     
     if (!user) {

@@ -18,6 +18,9 @@ const sessionOptions = {
   secret: 'Super secret secret',
   cookie: {
     maxAge: 3600 * 1000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
   },
   resave: false,
   saveUninitialized: false,
@@ -38,7 +41,7 @@ app.use(routes);
 
 const init = async () => {
   try {
-    await connection.sync({ force: false });
+    await connection.sync({ force: true });
     console.log(`[INFO]: DB connection successful`);
     app.listen(PORT, () =>
       console.log(`Server is running on http://localhost:${PORT}`)
