@@ -6,7 +6,7 @@ const router = Router();
 router.get("/", homePage);
 router.get("/thread/:id", threadPage);
 router.get("/user/:id", userPage);
-router.post("/signup", signupPage);
-router.post("/login", loginPage);
+router.get("/signup", signupPage);
+router.get("/login", loginPage);
 
 module.exports = router;

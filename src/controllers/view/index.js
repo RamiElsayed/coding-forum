@@ -11,7 +11,8 @@ const homePage = async (req, res) => {
       ],
     })
   ).map((x) => x.dataValues);
-  return res.render('home', { threads });
+  
+  return res.render("home", { threads });
 };
 
 const threadPage = async (req, res) => {
@@ -31,7 +32,7 @@ const signupPage = (req, res) => {
   return res.render('signUp');
 };
 const loginPage = (req, res) => {
-  return res.render('login');
+  return res.render("login");
 };
 module.exports = {
   homePage,

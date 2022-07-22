@@ -1,0 +1,28 @@
+{{> navbar}}
+<div class="container my-4 p-4 border">
+<h1>sign up</h1>
+  <hr />
+  <form id="signup_form">
+    <div class="mb-3">
+      <label for="fullName" class="form-label">User name</label>
+      <input type="text" class="form-control" id="username" />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" />
+    </div>
+    <div class="mb-3">
+      <label for="about_me" class="form-label">About me</label>
+      <input type="about_me" class="form-control" id="about_me" />
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </div>
+    <div id="emailHelp" class="form-text text-center">Already registered?
+      <a href="/login" class="link-primary">Login here</a></div>
+  </form>
+</div>
