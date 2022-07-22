@@ -13,7 +13,6 @@ class User extends Model {
 const schema = {
   id: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -21,7 +20,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
     validat: {
-      isAlpha: true,
+      isAlphanumeric: true,
     }
   },
   email: {

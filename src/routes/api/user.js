@@ -4,7 +4,7 @@ const { loginUser, signupUser, resetPassword, getUserById } = require('../../con
 
 const router = Router();
 
-router.get('/:id', getUserById);
+
 router.post('/login', loginUser);
 router.post('/signup', signupUser);
 router.put('/reset', resetPassword);
