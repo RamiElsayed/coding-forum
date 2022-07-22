@@ -1,12 +1,11 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const path = require('path');
-const session = require('express-session');
-const connectSessionSequelize = require('connect-session-sequelize');
+const express = require("express");
+const exphbs = require("express-handlebars");
+const path = require("path");
+const session = require("express-session");
+const connectSessionSequelize = require("connect-session-sequelize");
 
-const routes = require('./routes');
+const routes = require("./routes");
 const connection = require('./config/connection');
-const helpers = require('./helpers');
 
 const PORT = process.env.PORT || 3001;
 
@@ -18,7 +17,7 @@ const hbs = exphbs.create({});
 const sessionOptions = {
   secret: 'Super secret secret',
   cookie: {
-    maxAge: 3600 * 100,
+    maxAge: 3600 * 1000,
   },
   resave: false,
   saveUninitialized: false,
@@ -27,8 +26,9 @@ const sessionOptions = {
   }),
 };
 
-app.engine('handlbars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+
 
 app.use(session(sessionOptions));
 app.use(express.static(path.join(__dirname, '../public')));
