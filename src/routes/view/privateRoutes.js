@@ -1,4 +1,12 @@
 const { Router } = require('express');
+const {
+  getUserById,
+  renderCreateThreadPage,
+  writeComment,
+  renderEditThreadPage,
+  deleteThread,
+  deleteComment,
+} = require('../../controllers/view/privateRoutes');
 
 const router = Router();
 
