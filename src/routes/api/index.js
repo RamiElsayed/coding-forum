@@ -1,11 +1,13 @@
 const { Router } = require('express');
-const user = require('./user');
-const thread = require('./thread');
+const users = require('./users');
+const threads = require('./threads');
+const comments = require('./comments');
 
 
 const router = Router();
 
-router.use('/user', user);
-router.use('/thread', thread);
+router.use('/users', users);
+router.use('/threads', threads);
+router.use('/comments', comments);
 
 module.exports = router;
