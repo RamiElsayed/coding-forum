@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 
 
-const getUserById =  (req, res) => {
+const getUserById =  async (req, res) => {
   try {
     const { id } = req.params;
 

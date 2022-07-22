@@ -1,5 +1,15 @@
-const homePage = (req, res) => {
-    return res.render("home");
+const { Thread, User } = require("../../models");
+
+const homePage = async (req, res) => {
+    const threads = (await Thread.findAll({
+    include: [
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
+  })).map(x => x.dataValues);
+  return res.render("home", {threads});
 }
 const threadPage = (req, res) => {
     return res.render("thread");

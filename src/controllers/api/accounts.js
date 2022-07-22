@@ -2,7 +2,7 @@ const { Comment, User } = require('../../models');
 const { getPayloadWithValidFieldsOnly } = require('../../helpers');
 const bcrypt = require('bcrypt');
 
-const signupUser = (req, res) => {
+const signupUser = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
       ['email', 'password', 'username'],
@@ -20,7 +20,7 @@ const signupUser = (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
       ['email', 'password'],
@@ -45,7 +45,7 @@ const loginUser = (req, res) => {
   }
 };
 
-const resetPassword = (req, res) => {
+const resetPassword = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(
       ['email', 'password'],

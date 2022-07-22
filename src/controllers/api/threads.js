@@ -7,7 +7,7 @@ const getThreads = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['first_name', 'last_name'],
+          attributes: ['username'],
         },
       ],
     });
@@ -34,7 +34,7 @@ const getThreadById = async (req, res) => {
         },
         {
           model: User,
-          attributes: ['first_name', 'last_name'],
+          attributes: ['username'],
         },
       ],
     });
