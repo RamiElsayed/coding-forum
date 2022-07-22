@@ -1,9 +1,9 @@
-const { Router } = require('express');
-const { getUserById } = require('../../controllers/api/accounts');
+// const { Router } = require('express');
+// const { getUserById } = require('../../controllers/api/accounts');
 
 
-const router = Router();
+// const router = Router();
 
-router.get('/:id', getUserById);
+// router.get('/:id', getUserById);
 
-module.exports = router;
+// module.exports = router;
