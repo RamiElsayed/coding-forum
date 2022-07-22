@@ -17,13 +17,12 @@ const schema = {
     primaryKey: true,
     autoIncrement: true,
   },
-  first_name: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    validat: {
+      isAlpha: true,
+    }
   },
   email: {
     type: DataTypes.STRING,
@@ -41,20 +40,21 @@ const schema = {
     }
   },
   about_me: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     len: [50,200],
   }
 };
 
-const options = {
-  hooks: {
-    beforeCreate: hashPassword,
-  },
-  sequelize: connection,
-  timestamps: false,
-  freezeTableName: true,
-  underscored: true,
-  modelName: 'user'
+const options = { 
+    hooks: {
+      beforeCreate: hashPassword,
+      beforeUpdate: hashPassword,
+    },
+    sequelize: connection,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "user",
 };
 
 User.init(schema, options);
