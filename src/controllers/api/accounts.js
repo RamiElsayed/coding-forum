@@ -1,35 +1,28 @@
-const { Comment, User } = require('../../models');
+const { Thread, Comment, User } = require('../../models');
 const { getPayloadWithValidFieldsOnly } = require('../../helpers');
 const bcrypt = require('bcrypt');
 
 const signupUser = async (req, res) => {
   try {
-    
     const payload = getPayloadWithValidFieldsOnly(
       ['username', 'email', 'password', 'aboutme'],
       req.body
     );
 
-    
     if (Object.keys(payload).length !== 4) {
-      
       console.log(`[ERROR]: Failed to sign up | Invalid fields`);
       return res.status(400).json({ error: 'Failed to sign up' });
     }
 
-   
     const userFromDB = await User.create(payload);
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      
-      req.session.username = req.body.username;
-      // req.session.userFromDB = {
-      //   id: userFromDB.get('id'),
-      //   username: userFromDB.get('username'),
-      //   email: userFromDB.get('email'),
-      //   aboutme: userFromDB.get('aboutme'),
-      // };
+      req.session.userFromDB = {
+        id: userFromDB.get('id'),
+        username: userFromDB.get('username'),
+        email: userFromDB.get('email'),
+      };
       return res.json({ message: 'Successfully created user' });
     });
   } catch (error) {
@@ -52,8 +45,14 @@ const loginUser = async (req, res) => {
 
     const userFromDB = await User.findOne({
       where: {
-        email: req.body.email,
+        email: payload.email,
       },
+      include: [
+        {
+          model: Thread,
+          attributes: ['title', 'body', 'date_created', 'user_id'],
+        },
+      ],
     });
 
     if (!userFromDB) {
@@ -70,7 +69,7 @@ const loginUser = async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.username = {
+      req.session.userFromDB = {
         id: userFromDB.get('id'),
         username: userFromDB.get('username'),
       };
@@ -84,25 +83,23 @@ const loginUser = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      return res.status(204).end();
-    });
-  } else {
-    return res.status(404).end();
-  }
+  // if (req.session.loggedIn) {
+  //   req.session.destroy(() => {
+  //     return res.status(204).end();
+  //   });
+  // } else {
+  //   return res.status(404).end();
+  // }
+  req.session.destroy();
+
+  return res.redirect('/login');
 };
 
 const resetPassword = async (req, res) => {
   try {
-    const payload = getPayloadWithValidFieldsOnly(
-      ['email'],
-      req.body
-    );
+    const payload = getPayloadWithValidFieldsOnly(['email'], req.body);
     if (Object.keys(payload).length !== 1) {
-      return res
-        .status(400)
-        .json({ message: 'Please provide email' });
+      return res.status(400).json({ message: 'Please provide email' });
     }
     const user = await User.findOne({ where: { email: payload.email } });
     if (!user) {

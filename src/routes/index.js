@@ -6,6 +6,6 @@ const view = require('./view');
 const router = Router();
 
 router.use('/', view);
-router.use('/api', api);
+router.use("/api", api);
 
 module.exports = router;

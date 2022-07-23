@@ -4,9 +4,9 @@ const { loginUser, signupUser, resetPassword, logout } = require('../../controll
 
 const router = Router();
 
-router.post("/login", loginUser);
-router.get("/logout", logout);
 router.post("/signup", signupUser);
+router.post("/login", loginUser);
+router.post("/logout", logout);
 router.put("/reset-password", resetPassword);
 
 module.exports = router;

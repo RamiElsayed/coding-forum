@@ -39,23 +39,23 @@ const loginPage = (req, res) => {
 };
 
 const profilePage = async (req, res) => {
-  const { loggedIn, user } = req.session;
+  // const { loggedIn, user } = req.session;
 
-  const threadsFromDB = await Thread.findAll({
-    where: {
-      user_id: req.session.user.id,
-    },
-    include: [
-      {
-        model: User,
-        attributes: ['username', 'email'],
-      },
-    ],
-  });
+  // const threadsFromDB = await Thread.findAll({
+  //   where: {
+  //     user_id: req.session.user.id,
+  //   },
+  //   include: [
+  //     {
+  //       model: User,
+  //       attributes: ['username', 'email'],
+  //     },
+  //   ],
+  // });
 
-  const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
-
-  return res.render('profile', { loggedIn, threads, user });
+  // const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
+  //  { loggedIn, threads, user }
+  return res.render('profile');
 };
 module.exports = {
   homePage,

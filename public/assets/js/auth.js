@@ -14,56 +14,62 @@ const handleSignUp = async (event) => {
     username,
     email,
     password,
-    aboutme
+    aboutme,
   });
 
-  const response = await fetch("/api/accounts/signup", {
-    method: "POST",
+  const response = await fetch('/api/accounts/signup', {
+    method: 'POST',
     body: payload,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
   if (response.ok) {
-    window.location.replace("/profile");
+    window.location.replace('/profile');
   } else {
-    alert("Failed to sign up");
+    alert('Failed to sign up');
   }
 };
 
 const handleLogin = async (event) => {
   event.preventDefault();
 
-
   const email = $('#email').val();
   const password = $('#password').val();
 
-
   const payload = JSON.stringify({
     email,
-    password
+    password,
   });
 
-  const response = await fetch("/api/accounts/login", {
-    method: "POST",
+  const response = await fetch('/api/accounts/login', {
+    method: 'POST',
     body: payload,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
 
   if (response.ok) {
-    window.location.replace("/profile");
+    window.location.replace('/profile');
   } else {
-    alert("Failed to login");
+    alert('Failed to login');
   }
 };
 
-const handleLogout = async() => {
+const handleLogout = async () => {
+  const response = await fetch("/api/accounts/logout",{
+    method: "POST",
+  });
 
-}
+  if (response.ok) {
+    window.location.replace('/');
+  } else {
+    alert('Failed to logout');
+  }
+};
 
+logoutBtn.on('click', handleLogout);
 loginForm.on('submit', handleLogin);
 signUpForm.on('submit', handleSignUp);
-logoutBtn.on('click', handleLogout)

@@ -8,7 +8,7 @@ const comments = require('./comments');
 const router = Router();
 
 router.use('/users', users);
-router.use('/accounts', accounts);
+router.use("/accounts", accounts);
 router.use('/threads', threads);
 // router.use('/comments', comments);
 
