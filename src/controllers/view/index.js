@@ -16,7 +16,7 @@ const homePage = async (req, res) => {
 };
 
 const createThreadPage = async (req, res) => {
-
+ return res.render('createThreadPage');
 };
 
 const threadPage = async (req, res) => {

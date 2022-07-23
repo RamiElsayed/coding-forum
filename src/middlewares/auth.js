@@ -3,7 +3,7 @@ const auth = (req, res, next) => {
     console.log(`[INFO]: User ${req.session.username} is in session`);
     return next();
   }
-
+ alert("You need to login")
   return res.redirect("/login");
 };
 
