@@ -1,5 +1,6 @@
 const signUpForm = $('#signup-form');
 const loginForm = $('#login-form');
+const logoutBtn = $('#logout-btn');
 
 const handleSignUp = async (event) => {
   event.preventDefault();
@@ -59,5 +60,9 @@ const handleLogin = async (event) => {
   }
 };
 
+const handleLogout = async() => {
+
+}
 loginForm.on('submit', handleLogin);
 signUpForm.on('submit', handleSignUp);
+logoutBtn.on('click', handleLogout)

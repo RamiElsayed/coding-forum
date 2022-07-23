@@ -51,22 +51,23 @@ const getThreadById = async (req, res) => {
 
 const createThread = async (req, res) => {
   try {
-    const payload = getPayloadWithValidFieldsOnly(
-      ['title', 'body', 'user_id'],
-      req.body
-    );
+    const payload = getPayloadWithValidFieldsOnly(['title', 'body'], req.body);
 
-    if (Object.keys(payload).length !== 3) {
+    if (Object.keys(payload).length !== 2) {
       return res
         .status(400)
         .json({ message: 'Please provide required fields' });
     }
 
-    const thread = await Thread.create(payload);
+    await Thread.create({
+      ...payload,
+      user_id: req.session.user.id,
+    });
 
-    return res.json(thread);
-  } catch ({ message = ' Something went wrong ' }) {
-    return res.status(500).json({ message });
+    return res.json({ message: "Successfully created thread" });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to create thread | ${error.message}`);
+    return res.status(500).json({ error: "Failed to create thread" });
   }
 };
 

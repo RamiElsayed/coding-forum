@@ -11,38 +11,57 @@ const homePage = async (req, res) => {
       ],
     })
   ).map((x) => x.dataValues);
-  
-  return res.render("home", { threads });
+
+  return res.render('home', { threads });
 };
 
 const threadPage = async (req, res) => {
-  try {
-    const threadFromDB = await Thread.findByPk(req.params.id);
+  const threadFromDB = await Thread.findByPk(req.params.id);
 
-    const thread = threadFromDB.get({ plain: true });
+  const thread = threadFromDB.get({ plain: true });
 
-    return res.render('Thread', { thread, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(`[ERROR]: Failed to load thread page | ${err.message}`);
-    return res.render('error');
-  }
+  return res.render('Thread', { thread, loggedIn: req.session.loggedIn });
 };
 const userPage = async (req, res) => {};
 const signupPage = (req, res) => {
-  return res.render('signup');
+  if (!req.session.loggedIn) {
+    return res.render("signup");
+  }
+
+  return res.redirect("/");
 };
 const loginPage = (req, res) => {
-  return res.render("login");
+  if (!req.session.loggedIn) {
+    return res.render('login');
+  }
+
+  return res.redirect('/');
 };
 
-const profilePage = (req, res) => {
-  return res.render("profile");
-}
+const profilePage = async (req, res) => {
+  const { loggedIn, user } = req.session;
+
+  const threadsFromDB = await Thread.findAll({
+    where: {
+      user_id: req.session.user.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ['username', 'email'],
+      },
+    ],
+  });
+
+  const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
+
+  return res.render('profile', { loggedIn, threads, user });
+};
 module.exports = {
   homePage,
   threadPage,
   userPage,
   signupPage,
   loginPage,
-  profilePage
+  profilePage,
 };

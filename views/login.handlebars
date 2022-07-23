@@ -1,2 +1,20 @@
 {{> navbar}}
-<h1> login </h1>
+<div class="container my-4 p-4 border">
+<h1>log in</h1>
+  <hr />
+  <form id="login-form">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" />
+    </div>
+    <div class="d-grid gap-2 mb-3">
+      <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+    <div id="emailHelp" class="form-text text-center">Not a member
+      <a href="/signup" class="link-primary">Sign up here</a></div>
+  </form>
+</div>
