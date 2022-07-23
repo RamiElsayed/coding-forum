@@ -18,10 +18,7 @@ const schema = {
   },
   username: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validat: {
-      isAlphanumeric: true,
-    }
+    allowNull: false
   },
   email: {
     type: DataTypes.STRING,
@@ -38,9 +35,9 @@ const schema = {
       len: [8],
     }
   },
-  about_me: {
+  aboutme: {
     type: DataTypes.TEXT,
-    len: [50,200],
+    len: [5],
   }
 };
 

@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/login", loginUser);
 router.get("/logout", logout);
-router.get("/signup", signupUser);
+router.post("/signup", signupUser);
 router.put("/reset-password", resetPassword);
 
 module.exports = router;

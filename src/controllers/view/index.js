@@ -23,21 +23,26 @@ const threadPage = async (req, res) => {
 
     return res.render('Thread', { thread, loggedIn: req.session.loggedIn });
   } catch (err) {
-    console.log(`[ERROR]: Failed to load gallery page | ${err.message}`);
+    console.log(`[ERROR]: Failed to load thread page | ${err.message}`);
     return res.render('error');
   }
 };
 const userPage = async (req, res) => {};
 const signupPage = (req, res) => {
-  return res.render('signUp');
+  return res.render('signup');
 };
 const loginPage = (req, res) => {
   return res.render("login");
 };
+
+const profilePage = (req, res) => {
+  return res.render("profile");
+}
 module.exports = {
   homePage,
   threadPage,
   userPage,
   signupPage,
   loginPage,
+  profilePage
 };
