@@ -72,6 +72,7 @@ const loginUser = async (req, res) => {
       req.session.userFromDB = {
         id: userFromDB.get('id'),
         username: userFromDB.get('username'),
+        email: userFromDB.get("email"),
       };
 
       return res.json({ message: 'Login success' });
@@ -111,7 +112,7 @@ const resetPassword = async (req, res) => {
       { password: payload.password },
       { where: { email: payload.email }, individualHooks: true }
     );
-    return res.json({ message: 'Successfully reset password ' });
+    return res.json({ message: ' Password updated successfully' });
   } catch ({ message = ' Something went wrong ' }) {
     return res.status(500).json({ message });
   }

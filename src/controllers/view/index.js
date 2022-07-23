@@ -15,6 +15,10 @@ const homePage = async (req, res) => {
   return res.render('home', { threads });
 };
 
+const createThreadPage = async (req, res) => {
+
+};
+
 const threadPage = async (req, res) => {
   const threadFromDB = await Thread.findByPk(req.params.id);
 
@@ -22,23 +26,7 @@ const threadPage = async (req, res) => {
 
   return res.render('Thread', { thread, loggedIn: req.session.loggedIn });
 };
-const userPage = async (req, res) => {};
-const signupPage = (req, res) => {
-  if (!req.session.loggedIn) {
-    return res.render("signup");
-  }
-
-  return res.redirect("/");
-};
-const loginPage = (req, res) => {
-  if (!req.session.loggedIn) {
-    return res.render('login');
-  }
-
-  return res.redirect('/');
-};
-
-const profilePage = async (req, res) => {
+const userPage = async (req, res) => {
   // const { loggedIn, user } = req.session;
 
   // const threadsFromDB = await Thread.findAll({
@@ -55,10 +43,29 @@ const profilePage = async (req, res) => {
 
   // const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
   //  { loggedIn, threads, user }
+};
+const signupPage = (req, res) => {
+  if (!req.session.loggedIn) {
+    return res.render("signup");
+  }
+
+  return res.redirect("/");
+};
+const loginPage = (req, res) => {
+  if (!req.session.loggedIn) {
+    return res.render('login');
+  }
+
+  return res.redirect('/');
+};
+
+const profilePage = async (req, res) => {
+  
   return res.render('profile');
 };
 module.exports = {
   homePage,
+  createThreadPage,
   threadPage,
   userPage,
   signupPage,
