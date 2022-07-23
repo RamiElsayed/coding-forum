@@ -63,6 +63,7 @@ const handleLogin = async (event) => {
 const handleLogout = async() => {
 
 }
+
 loginForm.on('submit', handleLogin);
 signUpForm.on('submit', handleSignUp);
 logoutBtn.on('click', handleLogout)
