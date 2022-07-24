@@ -13,6 +13,10 @@ const seedAll = async () => {
     console.log('DB sync successful');
 
     await User.bulkCreate(users);
+    const userPromises = users.map((user) => User.create(user));
+
+    await Promise.all(userPromises);
+    
     console.log('Users seed successful');
 
     await Thread.bulkCreate(threads);

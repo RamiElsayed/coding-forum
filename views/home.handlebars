@@ -1,7 +1,11 @@
+{{#if loggedIn }}
+{{> memberNavbar}}
+{{else}}
 {{> navbar}}
-<h1>home</h1>
+{{/if}}
 <ul>
 {{#each threads}}
 <li>{{this.title}}</li>
 {{/each}}
 </ul>
+<h1>home</h1>
