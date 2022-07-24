@@ -11,9 +11,11 @@ const homePage = async (req, res) => {
         },
       ],
     })
-  ).map((thread) => thread.get({ plain: true }).dataValues);
+  ).map((thread) => thread.get({ plain: true }));
 
-  return res.render('home', { loggedIn, threads });
+  console.log(threads);
+
+  return res.render('home', { threads, loggedIn });
 };
 
 const createThreadPage = async (req, res) => {
@@ -21,9 +23,15 @@ const createThreadPage = async (req, res) => {
 };
 
 const threadPage = async (req, res) => {
-  const threadFromDB = await Thread.findByPk(req.params.id);
+  const threadFromDB = await Thread.findByPk(req.params.id, {include: [
+    {
+      model: User,
+      attributes: ['username', 'email'],
+    },
+  ]});
 
   const thread = threadFromDB.get({ plain: true });
+  console.log(thread);
 
   return res.render('thread', { thread, loggedIn: req.session.loggedIn });
 };

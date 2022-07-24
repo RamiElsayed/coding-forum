@@ -13,7 +13,7 @@ const schema = {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
-    len: [1,30],
+    len: [1, 30],
   },
   body: {
     type: DataTypes.TEXT,
@@ -31,7 +31,7 @@ const schema = {
       model: 'user',
       key: 'id',
     },
-  },
+  }
 };
 
 const options = {

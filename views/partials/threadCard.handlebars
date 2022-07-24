@@ -1,1 +1,9 @@
-<div>Thread Card</div>
+<div class="card m-3 text-center" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <hr />
+    <p class="card-text">{{body}}</p>
+    <a href="/profile" class="card-link">By {{user.username}}</a>
+    <a href="/thread/{{id}}" class="card-link">View</a>
+  </div>
+</div>

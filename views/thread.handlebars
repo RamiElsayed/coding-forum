@@ -3,4 +3,26 @@
 {{else}}
 {{> navbar}}
 {{/if}}
-<h1>single thread</h1>
+<main>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">{{thread.title}}</h1>
+        <hr class="my-4" />
+        <a class="btn btn-primary" href="/" role="button">All Threads</a>
+    </div>
+<div class="card m-3 text-center">
+  <div class="card-body">
+    <h5 class="card-title">{{thread.title}}</h5>
+    <hr />
+    <p class="card-text">{{thread.body}}</p>
+    <a class="card-link">By {{thread.user.username}}</a>
+    
+  </div>
+</div>
+{{#if loggedIn}}
+    {{#if isMyProject}}
+      <div class="my-2 text-center">
+        <button class="btn btn-danger" type="button" id="delete-btn" data-id="{{thread.id}}"><i class="far fa-trash-alt"></i><span class="px-2">Delete Project</span></button>
+      </div>
+    {{/if}}
+  {{/if}}
+</main>
