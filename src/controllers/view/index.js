@@ -23,17 +23,21 @@ const createThreadPage = async (req, res) => {
 };
 
 const threadPage = async (req, res) => {
+  console.log(req.session)
+  const { loggedIn, user } = req.session;
   const threadFromDB = await Thread.findByPk(req.params.id, {include: [
     {
       model: User,
-      attributes: ['username', 'email'],
+      attributes: ['username', 'email', 'id'],
     },
   ]});
 
   const thread = threadFromDB.get({ plain: true });
   console.log(thread);
 
-  return res.render('thread', { thread, loggedIn: req.session.loggedIn });
+  const isMyThread = loggedIn && user.id === thread.user.id;
+
+  return res.render('thread', { thread, loggedIn, isMyThread });
 };
 const userPage = async (req, res) => {
   // const { loggedIn, user } = req.session;
@@ -69,8 +73,24 @@ const loginPage = (req, res) => {
 };
 
 const profilePage = async (req, res) => {
-  
-  return res.render('profile');
+  const { loggedIn, user } = req.session;
+  const threadsFromDB = await Thread.findAll({
+    where: {
+      user_id: req.session.user.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ["name", "email"],
+      },
+    ],
+  });
+
+  const threads = threadsFromDB.map((thread) =>
+  thread.get({ plain: true })
+  );
+
+  return res.render("profile", { loggedIn, threads, user });
 };
 module.exports = {
   homePage,

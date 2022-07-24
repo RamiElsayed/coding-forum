@@ -14,14 +14,14 @@ const signupUser = async (req, res) => {
       return res.status(400).json({ error: 'Failed to sign up' });
     }
 
-    const userFromDB = await User.create(payload);
+    const user = await User.create(payload);
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.userFromDB = {
-        id: userFromDB.get('id'),
-        username: userFromDB.get('username'),
-        email: userFromDB.get('email'),
+      req.session.user = {
+        id: user.get('id'),
+        username: user.get('username'),
+        email: user.get('email'),
       };
       return res.json({ message: 'Successfully created user' });
     });
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: 'Please provide valid fields' });
     }
 
-    const userFromDB = await User.findOne({
+    const user = await User.findOne({
       where: {
         email: payload.email,
       },
@@ -55,12 +55,12 @@ const loginUser = async (req, res) => {
       ],
     });
 
-    if (!userFromDB) {
+    if (!user) {
       console.log('[ERROR]: Failed to login | User does not exist');
       return res.status(404).json({ error: 'Failed to login' });
     }
 
-    const validPassword = await userFromDB.checkPassword(req.body.password);
+    const validPassword = await user.checkPassword(payload.password);
 
     if (!validPassword) {
       console.log('[ERROR]: Failed to login | Invalid password');
@@ -69,13 +69,13 @@ const loginUser = async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
-      req.session.userFromDB = {
-        id: userFromDB.get('id'),
-        username: userFromDB.get('username'),
-        email: userFromDB.get("email"),
+      req.session.user = {
+        id: user.get('id'),
+        username: user.get('username'),
+        email: user.get("email"),
       };
 
-      return res.json({ message: 'Login success' });
+      return res.json({ message: 'logged in successfully' });
     });
   } catch (error) {
     console.log(`[ERROR]: Failed to login | ${error.message}`);

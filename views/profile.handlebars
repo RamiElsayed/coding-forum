@@ -1,2 +1,12 @@
-{{> memberNavbar}}
-<h1>profile</h1>
+<main>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">the coding forum app</h1>
+        <hr class="my-4" />
+        <p class="lead">let's start learning together</p>
+    </div>
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+    {{#each threads }}
+      {{> threadCard}}
+    {{/each}}
+    </div>
+</main>
