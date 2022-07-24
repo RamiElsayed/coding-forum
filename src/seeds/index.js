@@ -12,7 +12,6 @@ const seedAll = async () => {
 
     console.log('DB sync successful');
 
-    await User.bulkCreate(users);
     const userPromises = users.map((user) => User.create(user));
 
     await Promise.all(userPromises);
@@ -24,6 +23,7 @@ const seedAll = async () => {
 
     await Comment.bulkCreate(comments);
     console.log('Comments seed successful');
+    
   } catch (error) {
     console.log(`[ERROR]: seed failed | ${error.message}`);
   }

@@ -7,11 +7,11 @@ const homePage = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ['username', 'email'],
         },
       ],
     })
-  ).map((x) => x.dataValues);
+  ).map((thread) => thread.get({ plain: true }).dataValues);
 
   return res.render('home', { loggedIn, threads });
 };

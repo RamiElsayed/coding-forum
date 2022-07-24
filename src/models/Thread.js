@@ -13,12 +13,12 @@ const schema = {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
-    len: [8 - 30],
+    len: [1,30],
   },
   body: {
     type: DataTypes.TEXT,
     allowNull: false,
-    len: [50, 1000],
+    len: [5, 1000],
   },
   date_created: {
     type: DataTypes.DATE,

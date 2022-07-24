@@ -32,7 +32,7 @@ const schema = {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      len: [8],
+      len: [2],
     }
   },
   aboutme: {

@@ -3,9 +3,11 @@
 {{else}}
 {{> navbar}}
 {{/if}}
-<ul>
-{{#each threads}}
-<li>{{this.title}}</li>
-{{/each}}
-</ul>
-<h1>home</h1>
+<main>
+    {{> banner}}
+    <div class="d-flex flex-row justify-content-around flex-wrap">
+    {{#each threads as | thread |}}
+      {{> threadCard}}
+    {{/each}}
+  </div>
+</main>
