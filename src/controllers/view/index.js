@@ -56,6 +56,7 @@ const userPage = async (req, res) => {
 
   // const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
   //  { loggedIn, threads, user }
+  return res.render("user");
 };
 const signupPage = (req, res) => {
   if (!req.session.loggedIn) {

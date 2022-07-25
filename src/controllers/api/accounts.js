@@ -70,8 +70,8 @@ const loginUser = async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.user = {
-        id: user.get('id'),
-        username: user.get('username'),
+        id: user.get("id"),
+        username: user.get("username"),
         email: user.get("email"),
       };
 
@@ -84,16 +84,7 @@ const loginUser = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  // if (req.session.loggedIn) {
-  //   req.session.destroy(() => {
-  //     return res.status(204).end();
-  //   });
-  // } else {
-  //   return res.status(404).end();
-  // }
-  req.session.destroy();
-
-  return res.redirect('/login');
+  req.session.loggedIn ? req.session.destroy():  res.redirect('/login');
 };
 
 const resetPassword = async (req, res) => {

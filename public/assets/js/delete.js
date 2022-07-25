@@ -1,6 +1,6 @@
 const deleteBtn = $("delete-btn");
 
-const handleDeleteThread = (event) => {
+const handleDeleteThread = async (event) => {
     const { currentTarget } = event.currentTarget;
     const threadId = currentTarget.attr("data-id");
 

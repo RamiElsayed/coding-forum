@@ -3,7 +3,7 @@
     <h5 class="card-title">{{title}}</h5>
     <hr />
     <p class="card-text">{{body}}</p>
-    <a href="/profile" class="card-link">By {{user.username}}</a>
-    <a href="/thread/{{id}}" class="card-link">View</a>
+    <p>by <a href="/user/{{user_id}}" id="user-link" class="card-link">{{user.username}}</a>
+    <a href="/thread/{{id}}" class="card-link">View</a></p>
   </div>
 </div>

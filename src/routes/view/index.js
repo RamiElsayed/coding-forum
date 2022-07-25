@@ -7,9 +7,9 @@ const router = Router();
 router.get("/", homePage);
 router.get("/create-thread", auth, createThreadPage);
 router.get("/thread/:id", threadPage);
-router.get("/user/:id", auth, userPage);
+router.get("/user/:id", userPage);
 router.get("/signup", signupPage);
 router.get("/login", loginPage);
-router.get("/profile", profilePage);
+router.get("/profile", auth, profilePage);
 
 module.exports = router;
