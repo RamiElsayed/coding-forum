@@ -30,6 +30,7 @@ const threadPage = async (req, res) => {
       model: User,
       attributes: ['username', 'email', 'id'],
     },
+    { model: Comment }
   ]});
 
   const thread = threadFromDB.get({ plain: true });
@@ -62,7 +63,6 @@ const signupPage = (req, res) => {
   if (!req.session.loggedIn) {
     return res.render("signup");
   }
-
   return res.redirect("/");
 };
 const loginPage = (req, res) => {
@@ -82,7 +82,7 @@ const profilePage = async (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["name", "email"],
+        attributes: ["username", "email"],
       },
     ],
   });

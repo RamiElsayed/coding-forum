@@ -60,7 +60,7 @@ const loginUser = async (req, res) => {
       return res.status(404).json({ error: 'Failed to login' });
     }
 
-    const validPassword = await user.checkPassword(payload.password);
+    const validPassword = user.checkPassword(payload.password);
 
     if (!validPassword) {
       console.log('[ERROR]: Failed to login | Invalid password');
