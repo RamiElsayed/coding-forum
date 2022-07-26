@@ -1,13 +1,12 @@
 const { Router } = require('express');
-const { getThreads, getThreadById, createThread } = require('../../controllers/api/threads');
+const { deleteThreadById, createThread } = require('../../controllers/api/threads');
+const { auth } = require('../../middlewares/auth');
 
 
 const router = Router();
 
-router.get('/', getThreads);
-router.get('/:id', getThreadById);
-router.post('/', createThread);
-// router.put('/:id', editThread);
-// router.delete('/:id', deleteThread);
+
+router.delete('/:id',auth , deleteThreadById);
+router.post('/',auth, createThread);
 
 module.exports = router;

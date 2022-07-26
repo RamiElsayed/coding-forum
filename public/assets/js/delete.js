@@ -1,10 +1,11 @@
-const deleteBtn = $("delete-btn");
+const deleteBtn = $("#delete-btn");
 
-const handleDeleteThread = async (event) => {
-    const { currentTarget } = event.currentTarget;
+const deleteThread = async (event) => {
+    const  currentTarget  = $(event.currentTarget);
     const threadId = currentTarget.attr("data-id");
+    console.log(threadId);
 
-    const response = await fetch(`/api/thread/${threadId}`, {
+    const response = await fetch(`/api/threads/${threadId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -18,4 +19,4 @@ const handleDeleteThread = async (event) => {
       }
 }
 
-deleteBtn.on("click", handleDeleteThread)
+deleteBtn.on("click", deleteThread)

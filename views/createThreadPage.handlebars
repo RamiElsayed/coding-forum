@@ -1,7 +1,19 @@
-{{#if loggedIn }}
 {{> memberNavbar}}
-{{else}}
-{{> navbar}}
-{{/if}}
-{{> navbar}}
-<h1>create thread page</h1>
+<div class="container my-4 p-4 border">
+  <h1>create thread</h1>
+  <hr />
+  <form id="create-thread-form">
+    <div class="mb-3">
+      <label for="title" class="form-label">thread title</label>
+      <input type="text" class="form-control" id="title" />
+    </div>
+    
+    <div class="mb-3">
+      <label for="thread-body" class="form-label">your thread subject</label>
+      <input type="text" class="form-control" id="thread-body" />
+    </div>
+    <div class="d-grid d-md-flex justify-content-md-center">
+      <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+  </form>
+</div>

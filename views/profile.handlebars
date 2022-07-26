@@ -1,12 +1,12 @@
 {{> memberNavbar}}
 <main>
     <div class="jumbotron text-center">
-        <h1 class="display-4">dashboard</h1>
+        <h1 class="display-4">{{user.username}}'s dashboard</h1>
         <hr class="my-4" />
-        <p class="lead">let's start learning together</p>
+        <p class="lead">you can check all your threads and comments on this profile page</p>
     </div>
     <div class="d-flex flex-row justify-content-center flex-wrap">
-    {{#each threads }}
+    {{#each threads as | thread |}}
       {{> threadCard}}
     {{/each}}
     </div>
