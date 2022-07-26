@@ -19,21 +19,30 @@ const homePage = async (req, res) => {
 };
 
 const createThreadPage = async (req, res) => {
- return res.render('createThreadPage');
+  return res.render('createThreadPage');
 };
 
 const threadPage = async (req, res) => {
-  console.log(req.session)
+  console.log(req.session);
   const { loggedIn, user } = req.session;
-  const threadFromDB = await Thread.findByPk(req.params.id, {include: [
-    {
-      model: User,
-      attributes: ['username', 'email', 'id'],
-    },
-    { model: Comment }
-  ]});
-
-  const thread = threadFromDB.get({ plain: true });
+  const threadFromDB = await Thread.findByPk(req.params.id, {
+    include: [
+      {
+        model: User,
+        attributes: ['username', 'email', 'id'],
+      },
+      {
+        model: Comment,
+        include: 
+          [{
+            model: User,
+            attributes: ['username', 'email'],
+          }],
+      },
+    ]
+  });
+  thread = threadFromDB.get({plain: true});
+  
   console.log(thread);
 
   const isMyThread = loggedIn && user.id === thread.user.id;
@@ -57,13 +66,13 @@ const userPage = async (req, res) => {
 
   // const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
   //  { loggedIn, threads, user }
-  return res.render("user");
+  return res.render('user');
 };
 const signupPage = (req, res) => {
   if (!req.session.loggedIn) {
-    return res.render("signup");
+    return res.render('signup');
   }
-  return res.redirect("/");
+  return res.redirect('/');
 };
 const loginPage = (req, res) => {
   if (!req.session.loggedIn) {
@@ -82,16 +91,14 @@ const profilePage = async (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["username", "email"],
+        attributes: ['username', 'email'],
       },
     ],
   });
 
-  const threads = threadsFromDB.map((thread) =>
-  thread.get({ plain: true })
-  );
+  const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
 
-  return res.render("profile", { loggedIn, threads, user });
+  return res.render('profile', { loggedIn, threads, user });
 };
 module.exports = {
   homePage,

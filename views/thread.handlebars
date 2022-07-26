@@ -9,15 +9,12 @@
         <hr class="my-4" />
         <a class="btn btn-primary" href="/" role="button">All Threads</a>
     </div>
-<div class="card m-3 text-center">
-  <div class="card-body">
-    <h5 class="card-title">{{thread.title}}</h5>
-    <hr />
-    <!--<p class="card-text">{{thread.body}}</p>-->
-    <p class="card-text">{{thread.body}}</p>
-    <a class="card-link">By {{thread.user.username}}</a>
-    
-  </div>
+  <div class="card m-3">
+    <h5 class="card-header">{{thread.title}}</h5>
+    <div class="card-body">
+      <p class="card-text">{{thread.body}}</p>
+      <p>by <a href="/user/{{thread.user_id}}" id="user-link" class="card-link">{{thread.user.username}}</a>
+    </div>
 </div>
 {{#if loggedIn}}
     {{#if isMyThread}}
@@ -26,4 +23,19 @@
       </div>
     {{/if}}
   {{/if}}
+  {{#each thread.comments}}
+<div class="card m-3 text-start" style="width: 30rem;">
+  <div class="card-body">
+    <p class="card-text">{{this.comment}}</p>
+    <p class="m-3 text-start">by <a href="/user/{{this.user_id}}" id="user-link" class="card-link">{{this.user.username}}</a>
+  </div>
+</div>
+{{/each}}
+
+{{#if loggedIn}}
+<div class="m-3" style="width: 30rem">
+  <label for="comment-textarea" class="form-label">comment</label>
+  <textarea class="form-control" id="commment-textarea" rows="3"></textarea>
+</div>
+{{/if}}
 </main>
