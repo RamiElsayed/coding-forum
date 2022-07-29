@@ -16,8 +16,6 @@ Thread.belongsTo(User, {
 
 Thread.hasMany(Comment, {
   foreignKey: 'thread_id',
-  onDelete: 'cascade', 
-  hooks:true 
 });
 
 User.hasMany(Thread, {

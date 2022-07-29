@@ -31,7 +31,7 @@ const schema = {
       model: 'user',
       key: 'id',
     },
-  }
+  },
 };
 
 const options = {

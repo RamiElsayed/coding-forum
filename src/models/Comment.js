@@ -29,6 +29,7 @@ const schema = {
   thread_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    onDelete: 'CASCADE',
     references: {
       model: 'thread',
       key: 'id',
