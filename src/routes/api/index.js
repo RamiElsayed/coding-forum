@@ -10,6 +10,6 @@ const router = Router();
 router.use('/users', users);
 router.use("/accounts", accounts);
 router.use('/threads', threads);
-// router.use('/comments', comments);
+router.use('/comments', comments);
 
 module.exports = router;

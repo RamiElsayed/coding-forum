@@ -11,7 +11,7 @@ const schema = {
     autoIncrement: true,
   },
   comment: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   date_created: {

@@ -33,9 +33,10 @@
 {{/each}}
 
 {{#if loggedIn}}
-<div class="m-3" style="width: 30rem">
+<form class="m-3" style="width: 30rem" id="create-comment">
   <label for="comment-textarea" class="form-label">comment</label>
-  <textarea class="form-control" id="commment-textarea" rows="3"></textarea>
-</div>
+  <textarea class="form-control" id="comment-textarea" rows="3"></textarea>
+  <button class="mt-3 btn btn-primary" type="submit">submit</button>
+</form>
 {{/if}}
 </main>

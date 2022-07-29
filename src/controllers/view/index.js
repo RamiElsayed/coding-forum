@@ -41,7 +41,7 @@ const threadPage = async (req, res) => {
       },
     ]
   });
-  thread = threadFromDB.get({plain: true});
+  const thread = threadFromDB.get({plain: true});
   
   console.log(thread);
 
