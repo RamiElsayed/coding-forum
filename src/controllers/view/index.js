@@ -23,7 +23,7 @@ const createThreadPage = async (req, res) => {
 };
 
 const threadPage = async (req, res) => {
-  console.log(req.session);
+  
   const { loggedIn, user } = req.session;
   const threadFromDB = await Thread.findByPk(req.params.id, {
     include: [
@@ -43,7 +43,6 @@ const threadPage = async (req, res) => {
   });
   const thread = threadFromDB.get({plain: true});
   
-  console.log(thread);
 
   const isMyThread = loggedIn && user.id === thread.user.id;
 

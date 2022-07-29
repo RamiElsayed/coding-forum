@@ -24,7 +24,7 @@ const deleteThreadById = async (req, res) => {
 const createThread = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(['title', 'body'], req.body);
-    console.log(...Object.values(payload));
+    
     
     const regex =  RegExp(/^[\s+]/gm)
     const invalid = regex.test(...Object.values(payload));
