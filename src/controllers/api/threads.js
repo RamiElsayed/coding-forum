@@ -24,9 +24,13 @@ const deleteThreadById = async (req, res) => {
 const createThread = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(['title', 'body'], req.body);
-
-    if (Object.keys(payload).length !== 2) {
-      console.log(`[ERROR]: Failed to create thread| Invalid Fields`);
+    console.log(...Object.values(payload));
+    
+    const regex =  RegExp(/^[\s+]/gm)
+    const invalid = regex.test(...Object.values(payload));
+    
+    if ([...Object.values(payload)].includes('') ||  invalid) {
+      console.log(`[ERRO]: Failed to create thread| Invalid Fields`);
       return res
         .status(400)
         .json({ message: 'Please provide required fields' });
