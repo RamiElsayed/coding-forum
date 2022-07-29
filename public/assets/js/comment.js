@@ -2,13 +2,14 @@ const commentForm = $('#create-comment');
 
 const createComment = async (event) => {
     event.preventDefault();
+    const threadId = $('#threadId').val()
     const comment = $('#comment-textarea').val();
   
     const payload = JSON.stringify({
       comment,
     });
-    console.log('confirm');
-    const response = await fetch("/api/comments/writeComment", {
+   
+    const response = await fetch(`/api/threads/${threadId}/comments`, {
       method: "POST",
       body: payload,
       headers: {
@@ -18,11 +19,11 @@ const createComment = async (event) => {
   
     if (response.ok) {
         console.log(response)
-      window.location.replace("/thread");
+      window.location.replace(`/thread/${threadId}`);
     } else {
       alert("Failed to create Comment");
     };
   
-    console.log('create Comment');
+   
   };
   commentForm.on('submit', createComment);

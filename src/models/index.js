@@ -8,7 +8,6 @@ Comment.belongsTo(User, {
 
 Comment.belongsTo(Thread, {
   foreignKey: 'thread_id',
-  onDelete: 'SET NULL',
 });
 
 Thread.belongsTo(User, {
@@ -17,7 +16,8 @@ Thread.belongsTo(User, {
 
 Thread.hasMany(Comment, {
   foreignKey: 'thread_id',
-  onDelete: 'CASCADE',
+  onDelete: 'cascade', 
+  hooks:true 
 });
 
 User.hasMany(Thread, {

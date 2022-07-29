@@ -8,12 +8,7 @@ const deleteThreadById = async (req, res) => {
         id: req.params.id,
       },
     });
-    
-    await Comment.destroy({
-      where: {
-        thread_id: req.params.id,
-      },
-    });
+
     return res.json({ message: 'Successfully deleted thread' });
   } catch (error) {
     console.log(`[ERROR]: Failed to delete thread | ${error.message}`);
@@ -24,12 +19,11 @@ const deleteThreadById = async (req, res) => {
 const createThread = async (req, res) => {
   try {
     const payload = getPayloadWithValidFieldsOnly(['title', 'body'], req.body);
-    
-    
-    const regex =  RegExp(/^[\s+]/gm)
+
+    const regex = RegExp(/^[\s+]/gm);
     const invalid = regex.test(...Object.values(payload));
-    
-    if ([...Object.values(payload)].includes('') ||  invalid) {
+
+    if ([...Object.values(payload)].includes('') || invalid) {
       console.log(`[ERRO]: Failed to create thread| Invalid Fields`);
       return res
         .status(400)

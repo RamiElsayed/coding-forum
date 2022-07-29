@@ -4,7 +4,9 @@ const { getPayloadWithValidFieldsOnly } = require('../../helpers');
 const writeComment = async (req, res) => {
     try {
         const payload = getPayloadWithValidFieldsOnly(['comment'], req.body);
-        console.log('confirm');
+
+        console.log(req.params)
+
         if (Object.keys(payload).length !== 1) {
           console.log(`[ERROR]: Failed to create comment| Invalid Field`);
           return res
@@ -15,7 +17,7 @@ const writeComment = async (req, res) => {
         await Comment.create({
           ...payload,
           user_id: req.session.user.id,
-          thread_id: req.params.id
+          thread_id: req.params.threadId
         });
          console.log('confirm');
         return res.json({ message: 'Comment created successfully' });
