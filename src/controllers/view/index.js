@@ -23,7 +23,6 @@ const createThreadPage = async (req, res) => {
 };
 
 const threadPage = async (req, res) => {
-  
   const { loggedIn, user } = req.session;
   const threadFromDB = await Thread.findByPk(req.params.id, {
     include: [
@@ -33,20 +32,20 @@ const threadPage = async (req, res) => {
       },
       {
         model: Comment,
-        include: 
-          [{
+        include: [
+          {
             model: User,
             attributes: ['username', 'email'],
-          }],
+          },
+        ],
       },
-    ]
+    ],
   });
-  const thread = threadFromDB.get({plain: true});
-  
+  const thread = threadFromDB.get({ plain: true });
 
   const isMyThread = loggedIn && user.id === thread.user.id;
-
-  return res.render('thread', { thread, loggedIn, isMyThread });
+  console.log({user});
+  return res.render('thread', { thread, loggedIn, isMyThread, user });
 };
 const userPage = async (req, res) => {
   // const { loggedIn, user } = req.session;
