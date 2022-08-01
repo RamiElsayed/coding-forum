@@ -18,7 +18,7 @@ const createComment = async (event) => {
     });
   
     if (response.ok) {
-        console.log(response)
+        
       window.location.replace(`/thread/${threadId}`);
     } else {
       alert("Failed to create Comment");

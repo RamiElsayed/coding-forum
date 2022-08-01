@@ -13,7 +13,7 @@ const homePage = async (req, res) => {
     })
   ).map((thread) => thread.get({ plain: true }));
 
-  console.log(threads);
+ 
 
   return res.render('home', { threads, loggedIn });
 };
@@ -44,27 +44,36 @@ const threadPage = async (req, res) => {
   const thread = threadFromDB.get({ plain: true });
 
   const isMyThread = loggedIn && user.id === thread.user.id;
-  console.log({user});
+  
   return res.render('thread', { thread, loggedIn, isMyThread, user });
 };
 const userPage = async (req, res) => {
-  // const { loggedIn, user } = req.session;
-
-  // const threadsFromDB = await Thread.findAll({
-  //   where: {
-  //     user_id: req.session.user.id,
-  //   },
-  //   include: [
-  //     {
-  //       model: User,
-  //       attributes: ['username', 'email'],
-  //     },
-  //   ],
-  // });
-
-  // const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
-  //  { loggedIn, threads, user }
-  return res.render('user');
+  
+  const { user, loggedIn } = req.session;
+  if (loggedIn) {
+    const { id } = req.session.user;
+    if (id == req.params.id) {
+      const threadsFromDB = await Thread.findAll({
+        where: {
+          user_id: req.session.user.id,
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['username', 'email'],
+          },
+        ],
+      });
+    
+      const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
+    
+      return res.render('profile', { loggedIn, threads, user });
+    }
+    
+    return res.render('user');
+  }
+  
+  return res.render('login');
 };
 const signupPage = (req, res) => {
   if (!req.session.loggedIn) {
