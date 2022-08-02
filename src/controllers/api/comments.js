@@ -28,11 +28,11 @@ const writeComment = async (req, res) => {
         return res.status(500).json({ error: 'Failed to create thread' });
       }
 };
-// const deleteComment = (req, res) => {
-
-// };
+const deleteComment = (req, res) => {
+    
+};
 
 module.exports = {
   writeComment,
-//   deleteComment,
+  deleteComment,
 };

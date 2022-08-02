@@ -16,12 +16,10 @@
       <p>by <a href="/user/{{thread.user_id}}" id="user-link" class="card-link">{{thread.user.username}}</a>
     </div>
 </div>
-{{#if loggedIn}}
-    {{#if isMyThread}}
-      <div class="my-2 text-center">
-        <button class="btn btn-danger" type="button" id="delete-btn" data-id="{{thread.id}}"><i class="far fa-trash-alt"></i><span class="px-2">Delete Thread</span></button>
-      </div>
-    {{/if}}
+  {{#if thread.belongsToUser}}
+    <div class="my-2 text-center">
+      <button class="btn btn-danger" type="button" id="delete-btn" data-id="{{thread.id}}" data-type="thread"><i class="far fa-trash-alt"></i><span class="px-2">Delete Thread</span></button>
+    </div>
   {{/if}}
   {{#each thread.comments}}
 <div class="card m-3 text-start" style="width: 30rem;">
@@ -29,6 +27,11 @@
     <p class="card-text">{{this.comment}}</p>
     <p class="m-3 text-start">by <a href="/user/{{this.user_id}}" id="user-link" class="card-link">{{this.user.username}}</a>
   </div>
+  {{#if this.belongsToUser}}
+      <div class="my-2 text-center">
+        <button type="button" data-id="{{this.comment.id}}" data-type="comment" class="btn btn-danger">Delete</button>
+      </div>
+  {{/if}}
 </div>
 {{/each}}
 
