@@ -78,7 +78,7 @@ const userPage = async (req, res) => {
 };
 const signupPage = (req, res) => {
   if (!req.session.loggedIn) {
-    return res.render('signup');
+    return res.render('signUp');
   }
   return res.redirect('/');
 };
