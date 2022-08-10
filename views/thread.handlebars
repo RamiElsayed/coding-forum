@@ -29,7 +29,7 @@
   </div>
   {{#if this.belongsToUser}}
       <div class="my-2 text-center">
-        <button type="button" data-id="{{this.comment.id}}" data-type="comment" class="btn btn-danger">Delete</button>
+        <button type="button" data-thread="{{this.thread_id}}" data-id="{{this.id}}" data-type="comment" class="btn btn-danger comment-btn">Delete</button>
       </div>
   {{/if}}
 </div>

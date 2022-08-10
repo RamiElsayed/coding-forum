@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const { writeComment } = require('../../controllers/api/comments');
+const { writeComment, deleteComment } = require('../../controllers/api/comments');
 
 const router = Router({ mergeParams: true });
 
 router.post('/', writeComment);
-// router.delete('/delete-comment', deleteComment);
+router.delete('/:commentId', deleteComment);
 
 module.exports = router;

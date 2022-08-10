@@ -1,5 +1,5 @@
 const { Thread, User, Comment } = require('../../models');
-const { applyUser } = require('../../helpers/index')
+const { applyUser } = require('../../helpers/index');
 
 const homePage = async (req, res) => {
   const { loggedIn } = req.session;
@@ -13,8 +13,6 @@ const homePage = async (req, res) => {
       ],
     })
   ).map((thread) => thread.get({ plain: true }));
-
- 
 
   return res.render('home', { threads, loggedIn });
 };
@@ -43,13 +41,11 @@ const threadPage = async (req, res) => {
     ],
   });
   const thread = threadFromDB.get({ plain: true });
- 
-
+  
   applyUser(user, thread);
   return res.render('thread', { thread, loggedIn });
 };
 const userPage = async (req, res) => {
-  
   const { user, loggedIn } = req.session;
   if (loggedIn) {
     const { id } = req.session.user;
@@ -65,15 +61,17 @@ const userPage = async (req, res) => {
           },
         ],
       });
-      
-      const threads = threadsFromDB.map((thread) => thread.get({ plain: true }));
-    
+
+      const threads = threadsFromDB.map((thread) =>
+        thread.get({ plain: true })
+      );
+
       return res.render('profile', { loggedIn, threads, user });
     }
-    
+
     return res.render('user');
   }
-  
+
   return res.render('login');
 };
 const signupPage = (req, res) => {

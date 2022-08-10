@@ -1,4 +1,4 @@
-const { Thread, User, Comment } = require('../../models');
+const { Comment } = require('../../models');
 const { getPayloadWithValidFieldsOnly } = require('../../helpers');
 
 const writeComment = async (req, res) => {
@@ -24,12 +24,24 @@ const writeComment = async (req, res) => {
          
         return res.json({ message: 'Comment created successfully' });
       } catch (error) {
-        console.log(`[ERROR]: Failed to create thread | ${error.message}`);
-        return res.status(500).json({ error: 'Failed to create thread' });
+        console.log(`[ERROR]: Failed to create comment | ${error.message}`);
+        return res.status(500).json({ error: 'Failed to create comment' });
       }
 };
-const deleteComment = (req, res) => {
-    
+const deleteComment = async (req, res) => {
+  console.log(req.params)
+  try {
+    await Comment.destroy({
+      where: {
+        id: req.params.commentId,
+      },
+    });
+  
+    return res.json({ message: 'Successfully deleted comment' });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to delete comment | ${error.message}`);
+    return res.status(500).json({ error: 'Failed to delete comment' });
+  }
 };
 
 module.exports = {
