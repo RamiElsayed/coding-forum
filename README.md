@@ -21,4 +21,5 @@ Adding resources for each thread category through third parties APIs
 
 #### screenshot and Link
 
-[project screenshot](./public/images/the%20coding%20forum%20.jpg)
+[project link](https://dashboard.heroku.com/apps/young-taiga-42670)
+![project screenshot](./public/images/the%20coding%20forum%20.jpg)
