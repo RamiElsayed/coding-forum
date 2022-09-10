@@ -22,4 +22,4 @@ Adding resources for each thread category through third parties APIs
 #### screenshot and Link
 
 [project link](https://young-taiga-42670.herokuapp.com)
-[project screenshot](./public/images/coding-forum.jpg)
+![project screenshot](./public/images/coding-forum.jpg)
